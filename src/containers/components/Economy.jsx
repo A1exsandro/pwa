@@ -5,7 +5,7 @@ import { createMarkup } from '../../utils';
 import { useNavigate } from 'react-router-dom';
 
 function Economy({ values }) {
-    const history = useNavigate()
+    const navigate = useNavigate()
 
     const renderImg = ({ image, description}) =>
     <img src={image.url} alt={description} width="100%" />
@@ -14,10 +14,10 @@ function Economy({ values }) {
     <p dangerouslySetInnerHTML={createMarkup(description)} />
 
     const openPost = (id) => {
-        history(`/economy/${id}`)
+        navigate(`/economy/${id}`)
     }
 
-    const renderPosst = (post, index) => {
+    const renderPost = (post, index) => {
         const { title, image, description, id } = post
         return (
             <Col span={24} md={12} key={`post-${index}`} >
@@ -33,7 +33,7 @@ function Economy({ values }) {
 
     return (
         <Row gutter={[16, 16]} >
-            {values?.map(renderPosst)}
+            {values?.map(renderPost)}
         </Row>
     )
 }
